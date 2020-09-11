@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kimkwon.toy.api.mapper.UserMapper">
+<insert id="setUser" parameterType="com.kimkwon.toy.domain.UserVO">
+INSERT INTO tb_user(
+		  user_id
+		, user_password
+		, user_rank
+		, user_name
+		, user_nickname 
+		, user_email
+		, user_post_number
+		, user_address
+		, user_address_detail 
+		, user_phone_number 
+		, user_begin_date
+	) VALUE (	
+		 #{user_id}
+		, #{user_password}
+		, "USER"
+		, #{user_name}
+		, #{user_nickname}
+		, #{user_email}
+		, #{user_post_number}
+		, #{user_address}
+		, #{user_address_detail}
+		, #{user_phone_number}
+		, SYSDATE()
+	) 
+</insert>
+<select id="getUserIdPassword" parameterType="String" resultType="com.kimkwon.toy.domain.UserVO">
+	SELECT user_id
+	      ,user_password
+	  FROM tb_user
+	 WHERE user_id = #{user_id}
+</select>
+</mapper>
